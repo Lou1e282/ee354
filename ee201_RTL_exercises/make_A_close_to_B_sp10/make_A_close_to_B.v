@@ -68,7 +68,7 @@ always @(posedge Clk, posedge Reset)
 	      B <= 12'bXXXXXXXXXXXX;	    // to avoid recirculating mux controlled by Reset 
 		  Flag <= 1'bX;                 // to avoid ...
 	    end
-    else
+   	else
        begin
          (* full_case, parallel_case *)
          case (state)
@@ -82,18 +82,24 @@ always @(posedge Clk, posedge Reset)
 		           B <= Bin;
 		           Flag <= 0;
 	          end
+
 	        ADJ	:  // ** TODO **  complete RTL Operations and State Transitions
 	          begin
 		         // state transitions in the control unit
+				 if (((A < B) && (Flag == 0))||(A > B) && (Flag == 1))
+				 	state <= ADJ; 
 
+				 else if (((A < B) && (Flag == 1))||(A == B))
+					state <= DONE; 
 				 
-		         // RTL operations in the Data Path 		           
-
-				 
-				 
-				 
-				 
+		         // RTL operations in the Data Path  
+				 if(A < B && Flag == 0)
+						A <= A + 12'b000000110100; 
+				 if(A > B) 
+						A <= A - 12'b000000001010; 
+						Flag <=  1;           
  	          end
+
 	        DONE	:
 	          begin  
 		         // state transitions in the control unit

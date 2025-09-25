@@ -1,3 +1,4 @@
+
 //////////////////////////////////////////////////////////////////////////////////
 // Author:			Brandon Franzke, Gandhi Puvvada, Bilal Zafar
 // Create Date:   	02/13/2008, 
@@ -13,17 +14,17 @@
 
 `timescale 1ns / 1ps
 
-module ee354_detour_sm(Clk, reset, q_I, q_G1get, q_G1, q_G10get, q_G10, q_G101get, q_G101, q_G1011get, q_G1011, q_Opening, q_Bad);
+module ee354_numlock_sm(Clk, reset, q_I, q_G1get, q_G1, q_G10get, q_G10, q_G101get, q_G101, q_G1011get, q_G1011, q_Opening, q_Bad, Unlock);
 
 	/*  INPUTS */
 	// Clock & Reset
 	input		Clk, reset;
-	input 	    u, z;
+	input 	    U, Z;
     input       timeout; 
 	
 	/*  OUTPUTS */
 	// store current state
-	output q_I, q_G1get, q_G1, q_G10get, q_G10, q_G101get, q_G101, q_G1011get, q_G1011, q_Opening, q_Bad;
+	output q_I, q_G1get, q_G1, q_G10get, q_G10, q_G101get, q_G101, q_G1011get, q_G1011, q_Opening, q_Bad, Unlock;
 	reg [6:0] state;	
 	
 	assign {q_I, q_G1get, q_G1, q_G10get, q_G10, q_G101get, q_G101, q_G1011get, q_G1011, q_Opening, q_Bad} = state;
@@ -130,7 +131,6 @@ module ee354_detour_sm(Clk, reset, q_I, q_G1get, q_G1, q_G10get, q_G10, q_G101ge
 			endcase
 		end
 	end
-	
 	
 	// OFL
 

@@ -19,8 +19,8 @@ module ee354_numlock_top (
 // TODO: Add below the buttons and Switches needed in this design	
 		BtnL, BtnR,            // the Left, Up, Down, and the Right buttons 
 		
-		BtnC                             // the center button (this is our reset in most of our designs)
-		// Sw7, Sw6, Sw5, Sw4, Sw3, Sw2, Sw1, Sw0, // 8 switches
+		BtnC,                           // the center button (this is our reset in most of our designs)
+		/* Sw7, Sw6, Sw5, Sw4 */ Sw3, Sw2, Sw1, Sw0, // 8 switches
 		// Sw15, Sw14, Sw13, Sw12, Sw11, Sw10, Sw9, Sw8, Sw7, Sw6, Sw5, Sw4, Sw3, Sw2, Sw1, Sw0, // 16  switches
 
 		// Ld15, Ld14, Ld13, Ld12, Ld11, Ld10, Ld9, Ld8, // unused 8 LEDs
@@ -102,7 +102,7 @@ module ee354_numlock_top (
 	// create a series of slower "divided" clocks
 	// each successive bit is 1/2 frequency
 // TODO: create the sensitivity list
-	always @ (posedge clk, reset)  
+	always @ (posedge board_clk, reset)  
 	begin : CLOCK_DIVIDER
       if (reset)
 			DIV_CLK <= 0;
@@ -138,7 +138,7 @@ module ee354_numlock_top (
     
 // 
 	ee354_numlock_sm SM1(.clk(sys_clk), .reset(reset), 
-								.q_I(q_I), q_G1get(q_G1get), q_G1(q_G1), q_G10get(q_G10get), q_G10(q_G10), q_G101get(q_G101get), q_G101(q_G101), q_G1011get(q_G1011get), 
+								.q_I(q_I), .q_G1get(q_G1get), .q_G1(q_G1), .q_G10get(q_G10get), .q_G10(q_G10), .q_G101get(q_G101get), .q_G101(q_G101), .q_G1011get(q_G1011get), 
 								);		
 								
 	
@@ -159,7 +159,7 @@ module ee354_numlock_top (
 	always @ ( q_I, q_G1get, q_G1, q_G10get, q_G10, q_G101get, q_G101, q_G1011get, q_G1011, q_Opening, q_Bad )
 	begin : ONE_HOT_TO_HEX
 		(* full_case, parallel_case *) // to avoid prioritization (Verilog 2001 standard)
-		case ( {q_I, q_G1get, q_G1, q_G10get, q_G10, q_G101get, q_G101, q_G1011get, q_G1011, q_Opening, q_Bad} )		
+		case( {q_I, q_G1get, q_G1, q_G10get, q_G10, q_G101get, q_G101, q_G1011get, q_G1011, q_Opening, q_Bad} )		
 
 // TODO: complete the 1-hot encoder	
 			11'b10000000000: state_num = QI_NUM;
@@ -168,12 +168,12 @@ module ee354_numlock_top (
 			11'b00010000000: state_num = QG10GET_NUM;
 			11'b00001000000: state_num = QG10_NUM;
 			11'b00000100000: state_num = QG101GET_NUM;
-			11'b01000010000: state_num = QG101_NUM;
-			11'b01000001000: state_num = QG1011GET_NUM;
-			11'b01000000100: state_num = QG1011_NUM;
-			11'b01000000010: state_num = QOPENING_NUM;
-			11'b01000000001: state_num = QBAD_NUM;
-			default: SSD_STATENUM = UNKNOWN;  
+			11'b00000010000: state_num = QG101_NUM;
+			11'b00000001000: state_num = QG1011GET_NUM;
+			11'b00000000100: state_num = QG1011_NUM;
+			11'b00000000010: state_num = QOPENING_NUM;
+			11'b00000000001: state_num = QBAD_NUM;
+			default: state_num = UNKNOWN;  
 	end
 	
 	
@@ -190,7 +190,7 @@ module ee354_numlock_top (
 	// TODO: finish the logic for state_sum
 		state_sum = q_I + q_G1get + q_G1 + q_G10get + q_G10
               + q_G101get + q_G101 + q_G1011get + q_G1011
-              + q_Opening + q_Bad;  ;
+              + q_Opening + q_Bad; 
 	end
 	
 	// we could do the following with an assign statement also. 
@@ -208,7 +208,8 @@ module ee354_numlock_top (
 	
 	// display the value of selected state
 	
-	always @ ( selected_state, q_I, q_G1get, q_G1, q_G10get, q_G10, q_G101get, q_G101, q_G1011get, q_G1011, q_Opening, q_Bad )
+	always @ (*)
+	//selected_state, q_I, q_G1get, q_G1, q_G10get, q_G10, q_G101get, q_G101, q_G1011get, q_G1011, q_Opening, q_Bad
 	begin : SELECTED_STATE_VALUE
 		(* full_case, parallel_case *) // to avoid prioritization (Verilog 2001 standard)
 		case ( selected_state )		
@@ -235,9 +236,9 @@ module ee354_numlock_top (
 // SSD (Seven Segment Display)
 
 // TODO: finish the assignment for SSD3, SSD2, SSD1	Consider using the concatenation operator
-	assign SSD3 =    4'hF;
-	assign SSD2 =    4'hF;
-	assign SSD1 =    4'hF;
+	assign SSD3 = {1'b0, q_Bad, q_}   ;
+	assign SSD2 =    ;
+	assign SSD1 =    ;
 	assign SSD0 = state_num;
 	
 	

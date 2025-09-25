@@ -114,8 +114,8 @@ module ee354_numlock_sm_tb;
 	
 // test cases from the testbench from the schematic-based number lock folder 
 //test case 1
-//initial begin u = 0; #520; u = 1;  #500; u = 0; #1000; u = 1; #500; u = 0; #500; u = 1; #500; u = 0; end
-//initial begin z = 0; #1200; z = 1; #500; z = 0; end
+initial begin u = 0; #520; u = 1;  #500; u = 0; #1000; u = 1; #500; u = 0; #500; u = 1; #500; u = 0; end
+initial begin z = 0; #1200; z = 1; #500; z = 0; end
 
 //test case 2
 //initial begin u = 0; #520; u = 1;  #500; u = 0; #1000; u = 1; #500; u = 0; end
