@@ -16,13 +16,13 @@ module ee354_numlock_top (
 		QuadSpiFlashCS, // Disable the three memory chips
 
         ClkPort,                           // the 100 MHz incoming clock signal
-// TODO: Add below the buttons and Switches needed in this design	
-		BtnL, BtnR,            // the Left, Up, Down, and the Right buttons 
-		
-		BtnC,                             // the center button (this is our reset in most of our designs)
+// TODO: Add below the buttons and Switches needed in this design	 //DONE
+		// BtnL, BtnU, BtnD, BtnR,            // the Left, Up, Down, and the Right buttons 
+		BtnL, BtnR,
+		 BtnC,                             // the center button (this is our reset in most of our designs)
 		// Sw7, Sw6, Sw5, Sw4, Sw3, Sw2, Sw1, Sw0, // 8 switches
 		// Sw15, Sw14, Sw13, Sw12, Sw11, Sw10, Sw9, Sw8, Sw7, Sw6, Sw5, Sw4, Sw3, Sw2, Sw1, Sw0, // 16  switches
-
+		Sw3, Sw2, Sw1, Sw0,
 		// Ld15, Ld14, Ld13, Ld12, Ld11, Ld10, Ld9, Ld8, // unused 8 LEDs
 		Ld7, Ld6, Ld5, Ld4, Ld3, Ld2, Ld1, Ld0, // used 8 LEDs
 		An7, An6, An5, An4, An3, An2, An1, An0,			       // 8 anodes
@@ -34,11 +34,10 @@ module ee354_numlock_top (
 	/*  INPUTS */
 	// Clock & Reset I/O
 	input		ClkPort;	
-// TODO: DEFINE THE INPUTS (buttons and switches) you need for this project
-    input       BtnL, BtnR, BtnC
+// TODO: DEFINE THE INPUTS (buttons and switches) you need for this project //DONE
 // make sure to add those to the ee354_numlock_top PORT list also!	
 	// Project Specific Inputs
-	input		;	
+	input	BtnL, BtnR, BtnC, Sw3, Sw2, Sw1, Sw0	;	
 	
 	
 	
@@ -59,7 +58,7 @@ module ee354_numlock_top (
 	wire			board_clk, sys_clk;
 	wire [1:0]		ssdscan_clk;
 	reg [26:0]	    DIV_CLK;
-	wire 			U, Z;
+	wire 			u, z;
 	wire 			q_I, q_G1get, q_G1, q_G10get, q_G10, q_G101get, q_G101, q_G1011get, q_G1011, q_Opening, q_Bad;
 	wire 			Unlock;	
 	reg [3:0] 		state_num;
@@ -102,15 +101,13 @@ module ee354_numlock_top (
 	// create a series of slower "divided" clocks
 	// each successive bit is 1/2 frequency
 // TODO: create the sensitivity list
-	always @ (posedge board_clk, posedge reset)     // assign reset
+	always @ (posedge board_clk, posedge reset)  
 	begin : CLOCK_DIVIDER
       if (reset)
 			DIV_CLK <= 0;
       else
 			// just incrementing makes our life easier
-// TODO: add the incrementer code
-
-		DIV_CLK <= DLV_CLK + 1;
+		DIV_CLK <= DIV_CLK + 1'b1;
 	end		
 //------------	
 	// pick a divided clock bit to assign to system clock
@@ -124,7 +121,7 @@ module ee354_numlock_top (
 	// let's form some wire aliases with easier naming (U and Z, for UNO and ZERO) 
 
 // TODO: add the lines to assign your I/O inputs to U and Z
-	assign {U,Z} = {BtnL, BtnR};
+	assign {u,z} = {BtnL, BtnR};
 	
 	
 	// switches used to send the value of a specific state to LD6
@@ -135,11 +132,26 @@ module ee354_numlock_top (
 //------------
 // DESIGN
 
-// TODO: finish the port list /////////////////////////////////////////////////////////
 // 
 	ee354_numlock_sm SM1(.clk(sys_clk), .reset(reset), 
-								.q_I(q_I), q_G1get(q_G1get), q_G1(q_G1), q_G10get(q_G10get), q_G10(q_G10), q_G101get(q_G101get), q_G101(q_G101), q_G1011get(q_G1011get), 
+						.q_I(q_I),
+						.q_G1get(q_G1get), 
+						.q_G1(q_G1), 
+						.q_G10get(q_G10get), 
+						.q_G10(q_G10), 
+						.q_G101get(q_G101get), 
+						.q_G101(q_G101), 
+						.q_G1011get(q_G1011get), 
+						.q_G1011(q_G1011), 
+						.q_Opening(q_Opening), 
+						.q_Bad(q_Bad), 
+						.u(u), 
+						.z(z), 
+						.Unlock(Unlock) 
+
 								);		
+
+								
 	
 	
 	// convert the 1-hot state to a hex-number for easy display	
@@ -160,7 +172,6 @@ module ee354_numlock_top (
 		(* full_case, parallel_case *) // to avoid prioritization (Verilog 2001 standard)
 		case ( {q_I, q_G1get, q_G1, q_G10get, q_G10, q_G101get, q_G101, q_G1011get, q_G1011, q_Opening, q_Bad} )		
 
-// TODO: complete the 1-hot encoder	
 			11'b10000000000: state_num = QI_NUM;
 			11'b01000000000: state_num = QG1GET_NUM;
 			11'b00100000000: state_num = QG1_NUM;
@@ -172,8 +183,6 @@ module ee354_numlock_top (
 			11'b00000000100: state_num = QG1011_NUM;
 			11'b00000000010: state_num = QOPENING_NUM;
 			11'b00000000001: state_num = QBAD_NUM;
-			default: SSD_STATENUM = UNKNOWN;  
-
 		endcase
 	end
 	
@@ -188,10 +197,7 @@ module ee354_numlock_top (
 		
 	always @ (q_I, q_G1get, q_G1, q_G10get, q_G10, q_G101get, q_G101, q_G1011get, q_G1011, q_Opening, q_Bad)
 	begin
-	// TODO: finish the logic for state_sum
-		state_sum = q_I + q_G1get + q_G1 + q_G10get + q_G10
-              + q_G101get + q_G101 + q_G1011get + q_G1011
-              + q_Opening + q_Bad;   // result fits in 4 bits (0–11)  ;
+		state_sum = q_I + q_G1get + q_G1 + q_G10get + q_G10 + q_G101get + q_G101 + q_G1011get + q_G1011 + q_Opening + q_Bad;
 	end
 	
 	// we could do the following with an assign statement also. 
@@ -228,7 +234,7 @@ module ee354_numlock_top (
 	end	
 	assign Ld3 = selected_state_value;
 	
-	assign {Ld1, Ld0} = {U, Z};
+	assign {Ld1, Ld0} = {u, z};
 	
 	
 	
@@ -236,10 +242,11 @@ module ee354_numlock_top (
 // SSD (Seven Segment Display)
 
 // TODO: finish the assignment for SSD3, SSD2, SSD1	Consider using the concatenation operator
-    assign SSD3 = {1'b0, q_Bad, q_}   ;
-	assign SSD2 =    ;
-	assign SSD1 =    ;
+	assign SSD3 = {1'b0, q_Bad, q_Opening, q_G1011};
+	assign SSD2 = {q_G1011get, q_G101, q_G101get, q_G10};
+	assign SSD1 = {q_G10get, q_G1, q_G1get, q_I};
 	assign SSD0 = state_num;
+	
 	
 	// need a scan clk for the seven segment display 
 	
@@ -268,14 +275,12 @@ module ee354_numlock_top (
 	assign An1	= !(~(ssdscan_clk[1]) &&  (ssdscan_clk[0]));  // when ssdscan_clk = 01
 	assign An2	= !( (ssdscan_clk[1]) && ~(ssdscan_clk[0]));  // when ssdscan_clk = 10
 	assign An3	= !( (ssdscan_clk[1]) &&  (ssdscan_clk[0]));  // when ssdscan_clk = 11
-// TODO: inactivate the following four annodes
-	assign {An7,An6,An5,An4} = 4'b1111; 
+	assign {An7,An6,An5,An4} = 4'b1111;
 	
 	always @ (ssdscan_clk, SSD0, SSD1, SSD2, SSD3)
 	begin : SSD_SCAN_OUT
 		case (ssdscan_clk) 
 		
-// TODO: finish the multiplexer to scan through SSD0-SSD3 with ssdscan_clk[1:0]
 			2'b00: SSD = SSD0;
 			2'b01: SSD = SSD1;
 			2'b10: SSD = SSD2;
@@ -289,25 +294,24 @@ module ee354_numlock_top (
 	// we want the CATHODES to turn "on-off-on-off" with system clock
 	// while we are in state: OPENING
 	//make the dot point constantly OFF so we can differentiate your .bit file from the "TA" .bit file
-	assign SSD_CATHODES_blinking = SSD_CATHODES | {7{q_Opening & sys_clk}};
-    assign {Ca, Cb, Cc, Cd, Ce, Cf, Cg, Dp} = {SSD_CATHODES_blinking, 1'b1};
-
+	assign SSD_CATHODES_blinking = SSD_CATHODES | ( {7{q_Opening & sys_clk}} );
+	assign {Ca, Cb, Cc, Cd, Ce, Cf, Cg, Dp} = {SSD_CATHODES_blinking, 1'b1};
 
 	// Following is Hex-to-SSD conversion
 	always @ (SSD) 
 	begin : HEX_TO_SSD
 		case (SSD)
-// TODO: write cases for 0-9. A-F are already given to you. 
-            4'b0000: SSD_CATHODES = 7'b0000001; // 0
-            4'b0001: SSD_CATHODES = 7'b1001111; // 1
-            4'b0010: SSD_CATHODES = 7'b0010010; // 2
-            4'b0011: SSD_CATHODES = 7'b0000110; // 3
-            4'b0100: SSD_CATHODES = 7'b1001100; // 4
-            4'b0101: SSD_CATHODES = 7'b0100100; // 5
-            4'b0110: SSD_CATHODES = 7'b0100000; // 6
-            4'b0111: SSD_CATHODES = 7'b0001111; // 7
-            4'b1000: SSD_CATHODES = 7'b0000000; // 8
-            4'b1001: SSD_CATHODES = 7'b0000100; // 9
+			4'b0000: SSD_CATHODES = 7'b0000001 ; // 0
+			4'b0001: SSD_CATHODES = 7'b1001111 ; // 1
+			4'b0010: SSD_CATHODES = 7'b0010010 ; // 2
+			4'b0011: SSD_CATHODES = 7'b0000110 ; // 3
+			4'b0100: SSD_CATHODES = 7'b1001100 ; // 4
+			4'b0101: SSD_CATHODES = 7'b0100100 ; // 5
+			4'b0110: SSD_CATHODES = 7'b0100000 ; // 6
+			4'b0111: SSD_CATHODES = 7'b0001111 ; // 7
+			4'b1000: SSD_CATHODES = 7'b0000000 ; // 8
+			4'b1001: SSD_CATHODES = 7'b0000100 ; // 9
+
 			4'b1010: SSD_CATHODES = 7'b0001000 ; // A
 			4'b1011: SSD_CATHODES = 7'b1100000 ; // B
 			4'b1100: SSD_CATHODES = 7'b0110001 ; // C
