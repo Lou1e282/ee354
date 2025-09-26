@@ -86,18 +86,20 @@ always @(posedge Clk, posedge Reset)
 	        ADJ	:  // ** TODO **  complete RTL Operations and State Transitions
 	          begin
 		         // state transitions in the control unit
-				 if (((A < B) && (Flag == 0))||(A > B) && (Flag == 1))
+				 if ((A < B && Flag == 0)||(A > B && Flag == 1))
 				 	state <= ADJ; 
 
-				 else if (((A < B) && (Flag == 1))||(A == B))
+				 if ((A < B && Flag == 1)||(A == B))
 					state <= DONE; 
 				 
 		         // RTL operations in the Data Path  
-				 if(A < B && Flag == 0)
-						A <= A + 12'b000000110100; 
-				 if(A > B) 
-						A <= A - 12'b000000001010; 
-						Flag <=  1;           
+				 if(A < B && Flag == 0) begin
+						A <= A + 12'd100; 
+				 end 
+				 else if(A > B) begin
+						A <= A - 12'd10; 
+						Flag <=  1;   
+				 end        
  	          end
 
 	        DONE	:
