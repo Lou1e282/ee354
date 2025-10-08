@@ -1,0 +1,19 @@
+10/3/2023
+
+In this folder you find three files, specific to the Nexys_A7 board.
+
+The two zip files below (posted on the Bb) were created a few years ago for Nexys-4 board.
+Picoblaze_Design_Steps_Demo_with_the_exe_file.zip  (this has the assember execuatable in it; it may not download)
+Picoblaze_Design_Steps_Demo.zip (this does not have the assember execuatable in it; so it is sure to download)
+After extraction, you will be having a folder:  C:\Xilinx_projects\Picoblaze_Design_Steps_Demo
+
+In the supplemental .zip file (Picoblaze_Design_Steps_Demo_A7_supplement.zip), there are three files (with A7_ prefix).
+If you are using an A7 board, please remove the A7_ prefix in these file names 
+and move the .bit file to the synthesis subdirectory 
+and move the top.v and the .xdc files to the sources subdirectory of the Picoblaze_Design_Steps_Demo directory.
+
+Now you have the Picoblaze_Design_Steps_Demo directory for your Nexys-A7
+
+Thanks
+Gandhi and 
+Koushik (EE354L TA Fall 2023)
