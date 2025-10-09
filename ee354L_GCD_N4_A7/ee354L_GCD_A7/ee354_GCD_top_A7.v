@@ -130,7 +130,7 @@ ee354_debouncer #(.N_dc(28)) ee354_debouncer_1
 
 ee354_debouncer #(.N_dc(28)) ee354_debouncer_0 // TODO   
         (.CLK(sys_clk), .RESET(Reset), .PB(BtnU), .DPB( ),                                       // complete this instantiation
-          .SCEN(BTnU_Pulse), .MCEN( ), CCEM( )
+          .SCEN(BtnU_Pulse), .MCEN( ), .CCEN( )
 		                                    ); // to produce BtnU_Pulse from BtnU
 		
 //------------
