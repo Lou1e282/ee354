@@ -88,23 +88,23 @@ always @(posedge Clk, posedge Reset)
 		         // state transitions in the control unit
 				 if (M[I] > Max)
 				 	state <= DIV; 
-				 if ((I == 15) && (Max != 0))
-				 	state <= D_F; 
-				 else if ((I == 15) && (Max == 0))
-				 	state <= D_NF;
-									
+				 if (I == 15)
+				 	state <= (Max != 0) ? D_F : D_NF; 									
 		       // RTL operations in the Data Path   
 			     X <= M[I];
-				if ((M[I] <= Max) && (I < 15)) I <= I+1;  
+				 if ((M[I] <= Max) && (I < 15)) 
+					I <= I+1;  
 			     
  	          end
 	        
 	        DIV :  // ** TODO **  complete RTL Operations and State Transitions
 	          begin
 	          // state transitions in the control unit
-				 if ((X <= 7) && (I == 15))
-				 	state <= (Max != 0) ? D_F : D_NF;   // Seen Max == found
-				 else if ((X <= 7) && (I < 15))
+			     if (X > 7)
+				 	state <= DIV; 
+				 if ((I == 15))
+				 	state <= (X == 7) ? D_F : ((Max != 0) ? D_F : D_NF); 
+				 else if (X <= 7)
 				 	state <= LD_X; 
 				 
 	          // RTL operations in the Data Path
