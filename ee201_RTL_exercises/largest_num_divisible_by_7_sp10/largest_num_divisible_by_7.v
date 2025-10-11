@@ -86,33 +86,35 @@ always @(posedge Clk, posedge Reset)
 	        LD_X	:  // ** TODO **  complete RTL Operations and State Transitions
 	          begin
 		         // state transitions in the control unit
-				 if ((I == 15) && (Max != 0) && (M[I] <= Max))
+				 if ((I >= 15) && (Max != 0) && (M[I] <= Max))
 				 	state <= D_F; 
-				 else if ((I == 15) && (Max == 0) && (M[I] == 0))
+				 else if ((I >= 15) && (Max == 0) && (M[I] == 0))
 				 	state <= D_NF;
 				 else if (M[I] > Max)
 				 	state <= DIV; 
 									
 		       // RTL operations in the Data Path   
 			     X <= M[I];
+				if ((M[I] <= Max) && (I < 15)) I <= I+1;  
 			     
  	          end
 	        
 	        DIV :  // ** TODO **  complete RTL Operations and State Transitions
 	          begin
 	          // state transitions in the control unit
-			   	 if ((X <= 7) && (I < 15))
-				 	state <= LD_X; 
-				 else if ((X == 7) && (I == 15))
+				 if ((X == 7) && (I >= 15))
 				 	state <= D_F; 
-				 else if ((X < 7) && (I == 15))
+				 else if ((X < 7) && (I >= 15))
 				 	state <= D_NF;
+				 else if ((X <= 7) && (I < 15))
+				 	state <= LD_X; 
 				 
 	          // RTL operations in the Data Path
 			    if (X > 7)
 					X <= X - 7;
 				if (X <= 7) begin
-					I = I + 1;
+					if (I < 15)
+					I <= I + 1;
 					if (X == 7) begin
 						Max <= M[I];
 					end 
