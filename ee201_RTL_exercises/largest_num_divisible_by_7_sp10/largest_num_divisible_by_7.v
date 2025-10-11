@@ -47,7 +47,7 @@ reg [7:0] M [0:15];
 reg [7:0] X;
 reg [4:0] state;
 reg [7:0] Max;
-reg [3:0] I;
+reg [3:0] I;      // max 15
 
 localparam 
 INI = 	5'b00001, // "Initial" state
@@ -86,34 +86,37 @@ always @(posedge Clk, posedge Reset)
 	        LD_X	:  // ** TODO **  complete RTL Operations and State Transitions
 	          begin
 		         // state transitions in the control unit
-				 if ((I == 15)&(Max != 0)&(M[I] <= Max))
+				 if ((I == 15) && (Max != 0) && (M[I] <= Max))
 				 	state <= D_F; 
-				 else if ((I == 15)&(Max == 0)&(M[I] == 0))
+				 else if ((I == 15) && (Max == 0) && (M[I] == 0))
 				 	state <= D_NF;
 				 else if (M[I] > Max)
 				 	state <= DIV; 
 									
 		       // RTL operations in the Data Path   
 			     X <= M[I];
-				 I <= I + 1; 
 			     
  	          end
 	        
 	        DIV :  // ** TODO **  complete RTL Operations and State Transitions
 	          begin
 	          // state transitions in the control unit
-			   	 if ((X <= 7)&(I < 15))
+			   	 if ((X <= 7) && (I < 15))
 				 	state <= LD_X; 
-				 if ((X = 7)&(I == 15))
+				 else if ((X == 7) && (I == 15))
 				 	state <= D_F; 
-				 if ((X < 7)&(I == 15))
+				 else if ((X < 7) && (I == 15))
 				 	state <= D_NF;
 				 
 	          // RTL operations in the Data Path
 			    if (X > 7)
 					X <= X - 7;
-				if (X == 7)
-					Max <= M[I]; 
+				if (X <= 7) begin
+					I = I + 1;
+					if (X == 7) begin
+						Max <= M[I];
+					end 
+				end
 	          end
 	        
 	        D_F	:
