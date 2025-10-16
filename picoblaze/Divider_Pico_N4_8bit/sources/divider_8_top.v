@@ -17,7 +17,8 @@ module divider_8_top		(
 		
 		BtnL, BtnU, BtnD, BtnR,            // the Left, Up, Down, and the Right buttons 		BtnL, BtnR,
 		BtnC,                              // the center button (this is our reset in most of our designs)
-		Sw7, Sw6, Sw5, Sw4, Sw3, Sw2, Sw1, Sw0, // 8 switches
+		Sw15, Sw14, Sw13, Sw12, Sw11, Sw10, Sw9, Sw8, 
+		Sw7, Sw6, Sw5, Sw4, Sw3, Sw2, Sw1, Sw0, // 16 switches
 		Ld7, Ld6, Ld5, Ld4, Ld3, Ld2, Ld1, Ld0, // 8 LEDs
 		An3, An2, An1, An0,			       // 4 anodes
 		An7, An6, An5, An4,                // another 4 anodes (we need to turn these unused SSDs off)
@@ -241,14 +242,14 @@ end
 	// wire [3:0]	SSD3, SSD2, SSD1, SSD0;
 	
 	//SSDs display Xin, Yin, Quotient, and Remainder  
-	assign SSD7 =
-	assign SSD6 =
-	assign SSD5 =
-	assign SSD4 = 
-	assign SSD3 = Xin;
-	assign SSD2 = Yin;
-	assign SSD1 = Quotient;
-	assign SSD0 = Remainder;
+	assign SSD7 = Xin[7:4];       
+	assign SSD6 = Xin[3:0];      
+	assign SSD5 = Yin[7:4];       
+	assign SSD4 = Yin[3:0];       
+	assign SSD3 = Quotient[7:4];  
+	assign SSD2 = Quotient[3:0];  
+	assign SSD1 = Remainder[7:4]; 
+	assign SSD0 = Remainder[3:0]; 
 
 
 	// need a scan clk for the seven segment display 
