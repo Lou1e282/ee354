@@ -1,0 +1,25 @@
+10/9/2023
+
+File: Divider_Pico_N4_8bit_A7_supplement.txt
+
+In this folder you find three files, specific to the Nexys_A7 board.
+
+The following zip file (posted on the Bb) was created a few years ago for Nexys-4 board.
+==
+An incomplete 8-bit divider design: Divider_Pico_N4_8bit.zip 
+It contains TA’s completed  .bit file (with dot points glowing).
+==
+If you are using an A7 board, please use this supplemental .zip file in addition to the above zip file.
+Divider_Pico_N4_8bit_A7_supplement.zip
+
+In this supplemental .zip file, there are three files (with A7_ prefix).
+If you are using an A7 board, please remove the A7_ prefix in these 3 file names, 
+and move the .bit file to the synthesis subdirectory 
+and move the top.v and the .xdc files to the sources subdirectory of the Divider_Pico_N4_8bit directory.
+
+Now you have the Divider_Pico_N4_8bit directory for your Nexys-A7
+
+Thanks
+Gandhi and 
+Koushik (EE354L TA Fall 2023)
+
