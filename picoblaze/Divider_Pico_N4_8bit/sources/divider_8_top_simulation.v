@@ -214,7 +214,7 @@ begin
 	case (port_id[1:0])
 		2'b00 : in_port <= {Xin};
 		2'b01 : in_port <= {Yin};
-		2'b11 : in_port <= {6'b000000,Start,Ack}; 	
+		2'b10 : in_port <= {6'b000000,Start,Ack}; 	
 		default : in_port <= 8'bXXXXXXXX ;  
 	endcase
 end	
@@ -228,16 +228,17 @@ begin
 	// 'write_strobe' is used to qualify all writes to general output ports using OUTPUT.
 	if (write_strobe == 1'b1) 
 	begin
-		if(port_id[1] == 1'b0)begin
-			{Quotient,Remainder} <= out_port;
-		end	
+		case(port_id[0])
+			1'b0: Quotient <= out_port;
+			1'b1: Reminder <= out_port; 
+		endcase
 	end
 	
 	// 'k_write_strobe' is used to qualify all writes to general output ports using OUTPUTK.
 	if (k_write_strobe == 1'b1) 
 	begin
-		// Write to output_port at port address 01
-		if (port_id[1]  == 1'b1) 
+		// Write to output_port at port address 01 // 
+		if (port_id[1:0]  == 2'b01) 
 		begin
 			Done <= out_port[0];
 			Qi <= out_port[1];
