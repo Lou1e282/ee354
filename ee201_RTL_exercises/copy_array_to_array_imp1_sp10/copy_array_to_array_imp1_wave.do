@@ -1,19 +1,16 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -radix binary -radixshowbase 0 /copy_array_to_array_imp1_tb/Reset
-add wave -noupdate -radix binary -radixshowbase 0 /copy_array_to_array_imp1_tb/Clk
-add wave -noupdate -radix binary -radixshowbase 0 /copy_array_to_array_imp1_tb/Start
-add wave -noupdate -radix binary -radixshowbase 0 /copy_array_to_array_imp1_tb/Ack
-add wave -noupdate -radix unsigned /copy_array_to_array_imp1_tb/Ms_of_I
-add wave -noupdate -radix decimal /copy_array_to_array_imp1_tb/Ms_of_I
-add wave -noupdate /copy_array_to_array_imp1_tb/Ns_of_J_Write
-add wave -noupdate -radix unsigned /copy_array_to_array_imp1_tb/I
-add wave -noupdate -radix unsigned /copy_array_to_array_imp1_tb/J
+add wave -noupdate -radix binary -radixshowbase 0 /copy_array_to_array_imp1_tb/UUT/Reset
+add wave -noupdate -radix binary -radixshowbase 0 /copy_array_to_array_imp1_tb/UUT/Clk
+add wave -noupdate -radix binary -radixshowbase 0 /copy_array_to_array_imp1_tb/UUT/Start
+add wave -noupdate -radix binary -radixshowbase 0 /copy_array_to_array_imp1_tb/UUT/Ack
+add wave -noupdate -radix unsigned /copy_array_to_array_imp1_tb/M_of_I
+add wave -noupdate -radix decimal /copy_array_to_array_imp1_tb/M_of_I
+add wave -noupdate -radix decimal /copy_array_to_array_imp1_tb/N_of_J
+add wave -noupdate -radix unsigned /copy_array_to_array_imp1_tb/UUT/I
+add wave -noupdate -radix unsigned /copy_array_to_array_imp1_tb/UUT/J
 add wave -noupdate -radix hexadecimal /copy_array_to_array_imp1_tb/UUT/state
 add wave -noupdate -radix ascii -radixshowbase 0 /copy_array_to_array_imp1_tb/state_string
-add wave -noupdate -radix unsigned -radixshowbase 0 /copy_array_to_array_imp1_tb/Clk_cnt
-add wave -noupdate -radix unsigned -radixshowbase 0 /copy_array_to_array_imp1_tb/Start_clock_count
-add wave -noupdate -radix unsigned -radixshowbase 0 /copy_array_to_array_imp1_tb/Clocks_taken
 add wave -noupdate -radix unsigned -radixshowbase 0 /copy_array_to_array_imp1_tb/test_number
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {74 ns} 0} {{Cursor 2} {1051 ns} 0}

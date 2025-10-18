@@ -85,7 +85,7 @@
 	state_done:	   OUTPUTK Report_Qd_Done, Current_State_port	; Indicating Current State as Done State and also the Done signal (QD, Done)	   
 				   OUTPUT s0, Remainder_port				; Sending out Remainder (Dividend(X)) to the fabric logic
 				   OUTPUT s2, Quotient_port		            ; Sending out Quotient to the fabric logic
-				   INPUT s4, Control_signal_port			; Load the Control Signal Information into register s4
+				   INPUT s4, Control_signal_port			; Load the Control Signal Information into register s4git 
 				   AND s4, Mask_to_check_Ack				; Check to see if ACK is received
 				   JUMP Z, state_done						; Jump to state_initial if ACK is received
 				   JUMP state_initial						; Stay in Done State till ACK comes (until BtnR is pressed)

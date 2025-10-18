@@ -59,7 +59,8 @@ module divider_8_top_simulation		(
 	// output 	An0, An1, An2, An3;	
 	// output  An4, An5, An6, An7; // extra four unused SSDs need to be turned off
 	
-	output Done, Qi, Qc, Qd, Quotient, Remainder;
+	output Done, Qi, Qc, Qd; 
+	output [7:0] Quotient, Remainder;
 	output [17:0] instruction;
 	output [7:0] in_port;
 	output [7:0] port_id;
@@ -230,7 +231,7 @@ begin
 	begin
 		case(port_id[0])
 			1'b0: Quotient <= out_port;
-			1'b1: Reminder <= out_port; 
+			1'b1: Remainder <= out_port; 
 		endcase
 	end
 	
@@ -238,7 +239,7 @@ begin
 	if (k_write_strobe == 1'b1) 
 	begin
 		// Write to output_port at port address 01 // 
-		if (port_id[1:0]  == 2'b01) 
+		if (port_id[1:0]  == 2'b10) 
 		begin
 			Done <= out_port[0];
 			Qi <= out_port[1];
