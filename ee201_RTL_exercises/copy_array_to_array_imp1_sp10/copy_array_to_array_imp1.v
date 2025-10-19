@@ -113,7 +113,7 @@ always @(posedge Clk, posedge Reset) //asynchronous active_high Reset
 					// state transitions
 						if (M[I][3])
 							state <= C221; 
-						else if (I == 9) 
+						else if (I == Imax) 
 							state <= C122; 
 
 					//RTL
@@ -122,17 +122,15 @@ always @(posedge Clk, posedge Reset) //asynchronous active_high Reset
 							J <= J + 1; 
 						end 
 
-						I <= I + 1;
-						if (I == 9)
-							I <= 0; 
+						I <= (I == Imax) ? 0 : I + 1; 
 
                     end
 					
                  C221: // **********  TODO  ************** 
 					begin  
 					// state transitions
-					if (I == 9) begin
-						if(J == 9)
+					if (I == Imax) begin
+						if(J == Jmax)
 							state <= DONE; 
 						else
 							state <= C122; 
@@ -141,14 +139,9 @@ always @(posedge Clk, posedge Reset) //asynchronous active_high Reset
 					//RTL
 					N[J] <= M[I];
 
-					I <= I + 1;
-					if (I == 9)
-						I <= 0; 
-
-					J <= J + 1;
-					if (J == 9)
-						J <= 0;   //out of range
-
+					I <= (I == Imax) ? 0 : I + 1; 
+					J <= (J == Imax) ? 0 : J + 1; 
+					
                     end
                        
                  C122: // **********  TODO  ************** 
@@ -160,13 +153,8 @@ always @(posedge Clk, posedge Reset) //asynchronous active_high Reset
 					//RTL
 					N[J] <= M[I];
 
-					I <= I + 1;
-					if (I == 9)
-						I <= 0;   //out of range
-
-					J <= J + 1;
-					if (J == 9)
-						J <= 0;   
+					I <= (I == Imax) ? 0 : I + 1; 
+					J <= (J == Imax) ? 0 : J + 1; 
 
                     end
                         
@@ -174,7 +162,7 @@ always @(posedge Clk, posedge Reset) //asynchronous active_high Reset
                     begin
                         if(Ack)
 							state <= INI;
-						// else state <= DONE;
+						 else state <= DONE;
                     end
 				default: 
                     begin

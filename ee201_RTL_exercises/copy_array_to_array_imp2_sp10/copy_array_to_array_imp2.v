@@ -110,13 +110,11 @@ always @(posedge Clk, posedge Reset) //asynchronous active_high Reset
                  LS2C: // // **********  TODO  **************                  
                     begin 
 				// state transitions
-						if (M[I][3] | I== 9)
+						if (M[I][3] | I == Imax)
 							state <= CBC; 
 
 					//RTL
-						I <= I + 1;
-						if (I == 9)
-							I <= 0; 
+						I <= (I == Imax) ? 0 : I + 1; 
 
 						if (M[I][3]) begin
 							N[J] <= M[I];
@@ -128,22 +126,14 @@ always @(posedge Clk, posedge Reset) //asynchronous active_high Reset
                  CBC:  // **********  TODO  **************     
 					begin  
 					// state transitions
-					if ((I == 9 & J < 9)| J == 9) 
-						state <= CBC; 
+					if ((I == Imax & J < Jmax)| J == Jmax) 
+						state <= DONE; 
 
 					//RTL
-					N[J] = M[I];
+					N[J] <= M[I];
 
-					I <= I + 1;
-					if (I == 9)
-						I <= 0;
-
-					J <= J + 1;
-					if (J == 9)
-						J <= 0;
-
-
- 
+					I <= (I == Imax) ? 0 : I + 1; 
+					J <= (J == Imax) ? 0 : J + 1; 
  
 					end
                                                
