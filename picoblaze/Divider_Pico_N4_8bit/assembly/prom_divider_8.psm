@@ -58,7 +58,7 @@
 				   ;Control Signal Format in s4 {6'b000000, Start, Ack}
 		   
 	state_initial: OUTPUTK Report_Qi, Current_State_port 	; Indicating Current State as Initial State (QI)
-				   INPUT s0, Dividend_Divisor_port			; Register s0 holds Dividend(X)		  
+				   INPUT s0, Dividend_port			        ; Register s0 holds Dividend(X)		  
 				   INPUT s1, Divisor_port  					; Register s1 holds Divisor(Y)		
 				   LOAD s2,00								; Quotient Counter in s2
 				   OUTPUT s0, Remainder_port		        ; Sending out initial Quotient and Remainder (Dividend(X)) to fabric logic

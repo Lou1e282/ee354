@@ -179,7 +179,7 @@ module divider_8_top		(
 
 // *********TODO*************
 // You want to use all 16 switches here in the 8-bit divider top	
-	assign Xin = {Sw15, Sw14, Sw13, Sw12, Sw11, Sw10, Sw9, Sw8,};
+	assign Xin = {Sw15, Sw14, Sw13, Sw12, Sw11, Sw10, Sw9, Sw8};
 	assign Yin = {Sw7, Sw6, Sw5, Sw4, Sw3, Sw2, Sw1, Sw0};
 	assign Start = BtnL; assign Ack = BtnR;
 

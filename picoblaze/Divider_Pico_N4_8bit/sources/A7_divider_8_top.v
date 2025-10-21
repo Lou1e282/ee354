@@ -53,7 +53,7 @@ module divider_8_top		(
 	input		ClkPort;	
 	// Project Specific Inputs
 	input		BtnL, BtnU, BtnD, BtnR, BtnC;	
-	input		Sw7, Sw6, Sw5, Sw4, Sw3, Sw2, Sw1, Sw0;
+	input		Sw15, Sw14, Sw13, Sw12, Sw11, Sw10, Sw9, Sw8, Sw7, Sw6, Sw5, Sw4, Sw3, Sw2, Sw1, Sw0;
 	
 	
 	/*  OUTPUTS */
@@ -191,7 +191,7 @@ module divider_8_top		(
 		DIV_CLK <= DIV_CLK + 1'b1;
     end
 
-	assign Xin = {Sw15, Sw14, Sw13, Sw12, Sw11, Sw10, Sw9, Sw8,};
+	assign Xin = {Sw15, Sw14, Sw13, Sw12, Sw11, Sw10, Sw9, Sw8};
 	assign Yin = {Sw7, Sw6, Sw5, Sw4, Sw3, Sw2, Sw1, Sw0};
 	assign Start = BtnL; assign Ack = BtnR;
 
@@ -211,16 +211,17 @@ begin
 	// 'write_strobe' is used to qualify all writes to general output ports using OUTPUT.
 	if (write_strobe == 1'b1) 
 	begin
-		if(port_id[1] == 1'b0)begin               // 
-			{Quotient,Remainder} <= out_port;
-		end	
+		case(port_id[0])
+			1'b0: Quotient <= out_port;
+			1'b1: Remainder <= out_port; 
+		endcase
 	end
 	
 	// 'k_write_strobe' is used to qualify all writes to general output ports using OUTPUTK.
 	if (k_write_strobe == 1'b1) 
 	begin
-		// Write to output_port at port address 01
-		if (port_id[0]  == 1'b1) 
+		// Write to output_port at port address 01 // 
+		if (port_id[1:0]  == 2'b10) 
 		begin
 			Done <= out_port[0];
 			Qi <= out_port[1];
@@ -274,25 +275,29 @@ end
 	//
 
 	assign ssdscan_clk = DIV_CLK[19:17];   // 
-	assign An0	= !(~(ssdscan_clk[2]) && ~(ssdscan_clk[1]) && ~(ssdscan_clk[0]) && );  // when ssdscan_clk = 000
-	assign An1	= !(~(ssdscan_clk[2]) && ~(ssdscan_clk[1]) && (ssdscan_clk[0]) && );  // when ssdscan_clk = 001
-	assign An2	=  !(~(ssdscan_clk[2]) && (ssdscan_clk[1]) && ~(ssdscan_clk[0]) && );  // when ssdscan_clk = 010
-	assign An3	=  !(~(ssdscan_clk[2]) && (ssdscan_clk[1]) && (ssdscan_clk[0]) && );  // when ssdscan_clk = 011
-	assign An4	= !((ssdscan_clk[2]) && ~(ssdscan_clk[1]) && ~(ssdscan_clk[0]) && );  // when ssdscan_clk = 100
-	assign An5	= !((ssdscan_clk[2]) && ~(ssdscan_clk[1]) && (ssdscan_clk[0]) && );  // when ssdscan_clk = 101
-	assign An6	=  !((ssdscan_clk[2]) && (ssdscan_clk[1]) && ~(ssdscan_clk[0]) && );  // when ssdscan_clk = 110
-	assign An7	=  !((ssdscan_clk[2]) && (ssdscan_clk[1]) && (ssdscan_clk[0]) && );  // when 
+	assign An0	= !(~(ssdscan_clk[2]) && ~(ssdscan_clk[1]) && ~(ssdscan_clk[0]));  // when ssdscan_clk = 000
+	assign An1	= !(~(ssdscan_clk[2]) && ~(ssdscan_clk[1]) && (ssdscan_clk[0]));  // when ssdscan_clk = 001
+	assign An2	=  !(~(ssdscan_clk[2]) && (ssdscan_clk[1]) && ~(ssdscan_clk[0]));  // when ssdscan_clk = 010
+	assign An3	=  !(~(ssdscan_clk[2]) && (ssdscan_clk[1]) && (ssdscan_clk[0]));  // when ssdscan_clk = 011
+	assign An4	= !((ssdscan_clk[2]) && ~(ssdscan_clk[1]) && ~(ssdscan_clk[0]));  // when ssdscan_clk = 100
+	assign An5	= !((ssdscan_clk[2]) && ~(ssdscan_clk[1]) && (ssdscan_clk[0]));  // when ssdscan_clk = 101
+	assign An6	=  !((ssdscan_clk[2]) && (ssdscan_clk[1]) && ~(ssdscan_clk[0]));  // when ssdscan_clk = 110
+	assign An7	=  !((ssdscan_clk[2]) && (ssdscan_clk[1]) && (ssdscan_clk[0]));  // when 
 	// Turn on all anodes
 	
 	
 	
-	always @ (ssdscan_clk, SSD0, SSD1, SSD2, SSD3)
+	always @ (ssdscan_clk, SSD0, SSD1, SSD2, SSD3, SSD4, SSD5, SSD6, SSD7)
 	begin : SSD_SCAN_OUT
 		case (ssdscan_clk) 
-				  2'b00: SSD = SSD0;
-				  2'b01: SSD = SSD1;
-				  2'b10: SSD = SSD2;
-				  2'b11: SSD = SSD3;
+				  3'b000: SSD = SSD0;
+				  3'b001: SSD = SSD1;
+				  3'b010: SSD = SSD2;
+				  3'b011: SSD = SSD3;
+				  3'b100: SSD = SSD4;
+				  3'b101: SSD = SSD5;
+				  3'b110: SSD = SSD6;
+				  3'b111: SSD = SSD7;
 		endcase 
 	end
 
