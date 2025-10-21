@@ -149,7 +149,7 @@ module divider_8_top		(
 // Development Program Memory 
 //   JTAG Loader enabled for rapid code development. 
   
-  prom_divider_4 #(
+  prom_divider_8 #(
 	.C_FAMILY		   ("7S"),  
 	.C_RAM_SIZE_KWORDS	(1),  
 	.C_JTAG_LOADER_ENABLE	(1))
