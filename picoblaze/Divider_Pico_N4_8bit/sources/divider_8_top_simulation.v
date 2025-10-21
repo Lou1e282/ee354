@@ -229,9 +229,9 @@ begin
 	// 'write_strobe' is used to qualify all writes to general output ports using OUTPUT.
 	if (write_strobe == 1'b1) 
 	begin
-		case(port_id[0])
-			1'b0: Quotient <= out_port;
-			1'b1: Remainder <= out_port; 
+		case(port_id[1:0])
+			2'b00: Quotient <= out_port;
+			2'b01: Remainder <= out_port; 
 		endcase
 	end
 	

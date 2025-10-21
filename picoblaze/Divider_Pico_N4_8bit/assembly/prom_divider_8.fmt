@@ -65,7 +65,7 @@ state_compute: OUTPUTK Report_Qc, Current_State_port      ; Indicating Current S
                COMPARE s0, s1                             ; Compare Dividend and Divisor to check if Dividend is smaller than Divisor
                JUMP C, state_done                         ; If Dividend is smaller, jump to Done State (QD)
                SUB s0, s1                                 ; Subtract Divisor from Dividend
-               ADD s2, 10                                 ; Increment Quotient (in the upper fours bits of s2) after each repetitive Subtraction by adding 0001_0000 ( = 16) to s2
+               ADD s2, 01                                 ; Increment Quotient (in the upper fours bits of s2) after each repetitive Subtraction by adding 0001_0000 ( = 16) to s2
                JUMP state_compute                         ; If Dividend is not smaller, stay in Compute State (QC)
                ;****************************************************************************************
                ;Done State
