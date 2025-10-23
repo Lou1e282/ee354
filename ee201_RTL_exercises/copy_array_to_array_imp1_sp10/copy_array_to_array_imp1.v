@@ -141,7 +141,7 @@ always @(posedge Clk, posedge Reset) //asynchronous active_high Reset
 					N[J] <= M[I];
 
 					I <= (I == Imax) ? 0 : I + 1; 
-					J <= (J == Imax) ? 0 : J + 1; 
+					J <= (J == Jmax) ? 0 : J + 1; 
 					
                     end
                        
@@ -155,7 +155,7 @@ always @(posedge Clk, posedge Reset) //asynchronous active_high Reset
 					N[J] <= M[I];
 
 					I <= (I == Imax) ? 0 : I + 1; 
-					J <= (J == Imax) ? 0 : J + 1; 
+					J <= (J == Jmax) ? 0 : J + 1; 
 
                     end
                         
