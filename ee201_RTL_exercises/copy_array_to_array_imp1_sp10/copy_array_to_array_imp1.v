@@ -132,9 +132,10 @@ always @(posedge Clk, posedge Reset) //asynchronous active_high Reset
 					if (I == Imax) begin
 						if(J == Jmax)
 							state <= DONE; 
-						else
+						else 
 							state <= C122; 
 					end
+					
 
 					//RTL
 					N[J] <= M[I];
