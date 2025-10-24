@@ -1,0 +1,23 @@
+10/17/2023
+
+File: ee354l_divider_timing_A7_supplement.txt
+
+In this folder you find five files (besides this text file), specific to the Nexys_A7 board.
+
+The following zip file (posted on the Bb) was created a few years ago for Nexys-4 board.
+==
+ee354l_divider_timing.zip 
+It contains TA’s completed three .bit files (with dot points glowing). 
+It also has a top file and .xdc file. 
+These 5 files are different for the two boards: the _N4 and the _A7 
+The divider_timing_part1.v provided in zip file (being a core design) is good for both the boards
+==
+If you are using an A7 board, please use this supplemental .zip file 
+(ee354l_divider_timing_A7_supplement.zip) in addition to the above zip file.
+And use the five _A7 specific file in place of the corresponding N4 files. 
+
+
+Thanks
+Gandhi and 
+Mehul (EE354L TA Fall 2023)
+
