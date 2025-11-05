@@ -1,0 +1,94 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Fri Oct 25 05:36:58 2024
+# Process ID: 34616
+# Current directory: C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent3184 C:\Users\gandh\Downloads\Chipscope_detour_project_A7\detour_project\detour_project.xpr
+# Log file: C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/vivado.log
+# Journal file: C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project\vivado.jou
+# Running On        :Laptop-GP
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :26100
+# Processor Detail  :Intel(R) Core(TM) i7-10610U CPU @ 1.80GHz
+# CPU Frequency     :2304 MHz
+# CPU Physical cores:4
+# CPU Logical cores :8
+# Host memory       :16920 MB
+# Swap memory       :15032 MB
+# Total Virtual     :31952 MB
+# Available Virtual :17279 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.xpr
+update_compile_order -fileset sources_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.bit} [get_hw_devices xc7a100t_0]
+set_property PROBES.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.ltx} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.ltx} [get_hw_devices xc7a100t_0]
+current_hw_device [get_hw_devices xc7a100t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+set_property PROBES.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.ltx} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.ltx} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_1 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]
+save_wave_config {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.hw/hw_1/wave/hw_ila_data_1/hw_ila_data_1.wcfg}
+close_hw_manager
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.bit} [get_hw_devices xc7a100t_0]
+set_property PROBES.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.ltx} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.ltx} [get_hw_devices xc7a100t_0]
+current_hw_device [get_hw_devices xc7a100t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_1 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]]
+save_wave_config {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.hw/hw_1/wave/hw_ila_data_1/hw_ila_data_1.wcfg}
+close_hw_manager
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.bit} [get_hw_devices xc7a100t_0]
+set_property PROBES.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.ltx} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.ltx} [get_hw_devices xc7a100t_0]
+current_hw_device [get_hw_devices xc7a100t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_1 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]]
+save_wave_config {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.hw/hw_1/wave/hw_ila_data_1/hw_ila_data_1.wcfg}
+close_hw_manager
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.bit} [get_hw_devices xc7a100t_0]
+set_property PROBES.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.ltx} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.ltx} [get_hw_devices xc7a100t_0]
+current_hw_device [get_hw_devices xc7a100t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+set_property PROBES.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.ltx} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.ltx} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_project/detour_project.runs/impl_1/detour_top.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+display_hw_ila_data [ get_hw_ila_data hw_ila_data_1 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]]
+set_property CONTROL.TSM_FILE C:/Xilinx_projects/detour_sw1_sw2_sw3_sol.tsm [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]
+set_property CONTROL.TSM_FILE C:/Users/gandh/Downloads/Chipscope_detour_project_A7/detour_sw1_sw2_sw3_sol.tsm [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]]
+run_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]
+wait_on_hw_ila [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]
+display_hw_ila_data [upload_hw_ila_data [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"ILA_RD"}]]
+close_hw_manager
+close_project

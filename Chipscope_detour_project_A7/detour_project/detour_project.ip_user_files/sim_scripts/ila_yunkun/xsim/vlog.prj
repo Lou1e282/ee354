@@ -1,0 +1,7 @@
+verilog xil_defaultlib --include "../../../../project_yunkun.gen/sources_1/ip/ila_yunkun/hdl/verilog" \
+"../../../../project_yunkun.gen/sources_1/ip/ila_yunkun/sim/ila_yunkun.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

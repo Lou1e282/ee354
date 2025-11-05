@@ -1,0 +1,292 @@
+
+*** Running vivado
+    with args -log detour_top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source detour_top.tcl
+
+
+
+****** Vivado v2024.1 (64-bit)
+  **** SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+  **** IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+  **** SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+  **** Start of session at: Thu Oct 24 12:58:18 2024
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source detour_top.tcl -notrace
+create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 488.027 ; gain = 199.816
+Command: synth_design -top detour_top -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Device 21-9227] Part: xc7a100tcsg324-1 does not have CEAM library.
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 3708
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1387.582 ; gain = 446.660
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'detour_top' [C:/Xilinx_projects/Chipscope/A7_detour_top.vhd:32]
+INFO: [Synth 8-3491] module 'BUFGP' declared at 'C:/Xilinx/Vivado/2024.1/scripts/rt/data/unisim_comp.v:2108' bound to instance 'BUF_GP_1' of component 'BUFGP' [C:/Xilinx_projects/Chipscope/A7_detour_top.vhd:129]
+INFO: [Synth 8-6157] synthesizing module 'BUFGP' [C:/Xilinx/Vivado/2024.1/scripts/rt/data/unisim_comp.v:2108]
+INFO: [Synth 8-6155] done synthesizing module 'BUFGP' (0#1) [C:/Xilinx/Vivado/2024.1/scripts/rt/data/unisim_comp.v:2108]
+WARNING: [Synth 8-614] signal 'divclk' is read in the process but is not in the sensitivity list [C:/Xilinx_projects/Chipscope/A7_detour_top.vhd:141]
+INFO: [Synth 8-3491] module 'detour' declared at 'C:/Xilinx_projects/Chipscope/detour.vhd:13' bound to instance 'detour_1' of component 'detour' [C:/Xilinx_projects/Chipscope/A7_detour_top.vhd:182]
+INFO: [Synth 8-638] synthesizing module 'detour' [C:/Xilinx_projects/Chipscope/detour.vhd:25]
+INFO: [Synth 8-256] done synthesizing module 'detour' (0#1) [C:/Xilinx_projects/Chipscope/detour.vhd:25]
+INFO: [Synth 8-3491] module 'ila_yunkun' declared at 'C:/Xilinx_projects/Chipscope/project_yunkun/project_yunkun.runs/synth_1/.Xil/Vivado-10728-GDESK-31/realtime/ila_yunkun_stub.v:6' bound to instance 'ILA_RD' of component 'ila_yunkun' [C:/Xilinx_projects/Chipscope/A7_detour_top.vhd:230]
+INFO: [Synth 8-6157] synthesizing module 'ila_yunkun' [C:/Xilinx_projects/Chipscope/project_yunkun/project_yunkun.runs/synth_1/.Xil/Vivado-10728-GDESK-31/realtime/ila_yunkun_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'ila_yunkun' (0#1) [C:/Xilinx_projects/Chipscope/project_yunkun/project_yunkun.runs/synth_1/.Xil/Vivado-10728-GDESK-31/realtime/ila_yunkun_stub.v:6]
+INFO: [Synth 8-226] default block is never used [C:/Xilinx_projects/Chipscope/A7_detour_top.vhd:310]
+INFO: [Synth 8-256] done synthesizing module 'detour_top' (0#1) [C:/Xilinx_projects/Chipscope/A7_detour_top.vhd:32]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ILA_RD'. This will prevent further optimization [C:/Xilinx_projects/Chipscope/A7_detour_top.vhd:230]
+WARNING: [Synth 8-3917] design detour_top has port AN1 driven by constant 1
+WARNING: [Synth 8-3917] design detour_top has port AN2 driven by constant 1
+WARNING: [Synth 8-3917] design detour_top has port AN4 driven by constant 1
+WARNING: [Synth 8-3917] design detour_top has port AN5 driven by constant 1
+WARNING: [Synth 8-3917] design detour_top has port AN6 driven by constant 1
+WARNING: [Synth 8-3917] design detour_top has port AN7 driven by constant 1
+WARNING: [Synth 8-3917] design detour_top has port QuadSpiFlashCS driven by constant 1
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1500.441 ; gain = 559.520
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1500.441 ; gain = 559.520
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1500.441 ; gain = 559.520
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1503.148 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Xilinx_projects/Chipscope/project_yunkun/project_yunkun.gen/sources_1/ip/ila_yunkun/ila_yunkun/ila_yunkun_in_context.xdc] for cell 'ILA_RD'
+Finished Parsing XDC File [c:/Xilinx_projects/Chipscope/project_yunkun/project_yunkun.gen/sources_1/ip/ila_yunkun/ila_yunkun/ila_yunkun_in_context.xdc] for cell 'ILA_RD'
+Parsing XDC File [C:/Xilinx_projects/Chipscope/A7_detour_top.xdc]
+WARNING: [Vivado 12-584] No ports matched 'RamCS'. [C:/Xilinx_projects/Chipscope/A7_detour_top.xdc:104]
+WARNING: [Vivado 12-584] No ports matched 'RamCS'. [C:/Xilinx_projects/Chipscope/A7_detour_top.xdc:106]
+WARNING: [Vivado 12-584] No ports matched 'MemOE'. [C:/Xilinx_projects/Chipscope/A7_detour_top.xdc:108]
+WARNING: [Vivado 12-584] No ports matched 'MemOE'. [C:/Xilinx_projects/Chipscope/A7_detour_top.xdc:110]
+WARNING: [Vivado 12-584] No ports matched 'MemWR'. [C:/Xilinx_projects/Chipscope/A7_detour_top.xdc:112]
+WARNING: [Vivado 12-584] No ports matched 'MemWR'. [C:/Xilinx_projects/Chipscope/A7_detour_top.xdc:114]
+Finished Parsing XDC File [C:/Xilinx_projects/Chipscope/A7_detour_top.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Xilinx_projects/Chipscope/A7_detour_top.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/detour_top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Xilinx_projects/Chipscope/A7_detour_top.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/detour_top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/detour_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1603.590 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  BUFGP => BUFGP (BUFG, IBUF): 1 instance 
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1603.590 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for ILA_RD. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_enu_reg' in module 'detour'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+            idle_start_0 |                    0000000000001 |                             0000
+            idle_start_1 |                    0000000000010 |                             0001
+              idle_state |                    0000000000100 |                             0010
+                r1_state |                    0000000001000 |                             0011
+               r12_state |                    0000000010000 |                             0100
+              r123_state |                    0000000100000 |                             0101
+          r123_dis_state |                    0000001000000 |                             0110
+          r123_rea_state |                    0000010000000 |                             0111
+                l1_state |                    0000100000000 |                             1000
+               l12_state |                    0001000000000 |                             1001
+              l123_state |                    0010000000000 |                             1010
+          l123_dis_state |                    0100000000000 |                             1011
+          l123_rea_state |                    1000000000000 |                             1100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_enu_reg' using encoding 'one-hot' in module 'detour'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    4 Bit       Adders := 2     
++---Registers : 
+	                4 Bit    Registers := 2     
++---Muxes : 
+	  13 Input   13 Bit        Muxes := 1     
+	   2 Input   13 Bit        Muxes := 4     
+	  13 Input    8 Bit        Muxes := 1     
+	  13 Input    4 Bit        Muxes := 2     
+	   3 Input    4 Bit        Muxes := 1     
+	   4 Input    4 Bit        Muxes := 1     
+	  13 Input    1 Bit        Muxes := 1     
+	   3 Input    1 Bit        Muxes := 3     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3917] design detour_top has port AN1 driven by constant 1
+WARNING: [Synth 8-3917] design detour_top has port AN2 driven by constant 1
+WARNING: [Synth 8-3917] design detour_top has port AN4 driven by constant 1
+WARNING: [Synth 8-3917] design detour_top has port AN5 driven by constant 1
+WARNING: [Synth 8-3917] design detour_top has port AN6 driven by constant 1
+WARNING: [Synth 8-3917] design detour_top has port AN7 driven by constant 1
+WARNING: [Synth 8-3917] design detour_top has port QuadSpiFlashCS driven by constant 1
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |ila_yunkun    |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+-----------+------+
+|      |Cell       |Count |
++------+-----------+------+
+|1     |ila_yunkun |     1|
+|2     |CARRY4     |     7|
+|3     |LUT1       |     8|
+|4     |LUT2       |     6|
+|5     |LUT3       |     7|
+|6     |LUT4       |     7|
+|7     |LUT5       |     9|
+|8     |LUT6       |    18|
+|9     |FDCE       |    46|
+|10    |FDPE       |     1|
+|11    |BUFGP      |     1|
+|12    |IBUF       |     7|
+|13    |OBUF       |    25|
++------+-----------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1603.590 ; gain = 662.668
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:31 . Memory (MB): peak = 1603.590 ; gain = 559.520
+Synthesis Optimization Complete : Time (s): cpu = 00:00:33 ; elapsed = 00:00:33 . Memory (MB): peak = 1603.590 ; gain = 662.668
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1603.590 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1603.590 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  BUFGP => BUFGP (BUFG, IBUF): 1 instance 
+
+Synth Design complete | Checksum: d8cdbdcc
+INFO: [Common 17-83] Releasing license: Synthesis
+33 Infos, 23 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:37 ; elapsed = 00:00:39 . Memory (MB): peak = 1603.590 ; gain = 1073.086
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1603.590 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Xilinx_projects/Chipscope/project_yunkun/project_yunkun.runs/synth_1/detour_top.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file detour_top_utilization_synth.rpt -pb detour_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Oct 24 12:59:08 2024...
