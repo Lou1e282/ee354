@@ -27,10 +27,9 @@ module parity (X, p);
 	//parity generation 
 	always @(X) begin
 		ones_count = 4'b0000;     // Notice the need for starting with zero before the "for" loop
-		for                        // Check syntax for the "for" loop on page 71 of the guide
+		for  (i = 0; 1 < 8; i = i + 1)                         // Check syntax for the "for" loop on page 71 of the guide
 			begin 
-			
-				                   // Decide whether to use blocking assignment or non-blocking assignment. 
+				ones_count = ones_count + X[i];                  // Decide whether to use blocking assignment or non-blocking assignment. 
 								   // What happens if you use the wrong assignment. Discuss with your TA.
 								   
 			end
