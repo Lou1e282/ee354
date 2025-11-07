@@ -75,13 +75,17 @@ module ee354_GCD_CEN_tb_v;
 			end
 		end
 
+		//file result
+		integer results; 
+		initial results = $fopen("ee354_GCD_tb_part3_output", "w"); 
+
 		task APPLY_STIMULUS; 
 			input [7:0] Ain_value;
 			input [7:0] Bin_value;	
 		begin
 		
 		Ain = Ain_value;
-		Bin = Bin_value;
+		Bin = Bin_value; 
 
 		// stimulus-1 GCD(36, 24)
 		// Initialize Input
@@ -105,7 +109,10 @@ module ee354_GCD_CEN_tb_v;
 		Ack = 0;
 		$display("Ain: %d Bin: %d, GCD: %d", Ain, Bin, AB_GCD);
 		$display("It took %d clock(s) to compute the GCD", clocks_taken);
-		#20;		
+		$fdisplay(results, "Ain: %d Bin: %d, GCD: %d", Ain, Bin, AB_GCD); 
+		$fdisplay(results, "It took %d clock(s) to compute the GCD", clocks_taken);
+
+		#20;	
 		
 		end
 		endtask 
@@ -122,26 +129,22 @@ module ee354_GCD_CEN_tb_v;
 				 // transitions are stopped by making CEN = 0,
 				 // the data transformations are also stopped
 		initial begin
-		CCEN = 1;
+		CEN = 1;
 		Start = 0;
 		Ack = 0; 
 		start_clk_cnt = 0;
 		clocks_taken = 0; 
-		#103;
-		
-		APPLY_STIMULUS(36, 24);
-	    APPLY_STIMULUS(15, 5);
+		#103; 
 
-		end
+		for (Ain = 2; Ain <= 63; Ain = Ain + 1)
+			for (Bin = 2; Bin <= 63; Bin = Bin + 1) 
+				APPLY_STIMULUS (Ain, Bin);
 
-	//initial begin
-	//	CEN = 1;
-		
-	//	APPLY_STIMULUS(36, 24);
-	//	APPLY_STIMULUS(15, 5);
+		$fclose(results);
+		$finish; 
 
-	//	$finish; 
-	//end
+
+		end 
 
 	
 	always @(*)
