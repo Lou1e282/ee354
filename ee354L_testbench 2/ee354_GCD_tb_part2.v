@@ -125,7 +125,7 @@ module ee354_GCD_CEN_tb_v;
 		CCEN = 1;
 		Start = 0;
 		Ack = 0; 
-		Start_clk_cnt = 0;
+		start_clk_cnt = 0;
 		clocks_taken = 0; 
 		#103;
 		
